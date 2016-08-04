@@ -1,0 +1,10 @@
+# ignore all files ending with .a or .o
+*.[oa]
+# with exception lib.a
+!lib.a
+# ignore all files in directory build
+build/
+# ignore all files ending with ~
+*~
+# Test only
+*!
