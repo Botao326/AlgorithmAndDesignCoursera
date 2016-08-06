@@ -7,10 +7,16 @@ import java.io.*;
 import java.util.*;
 /**
  * @author botao
- *
+ * This is the Assignment work for the Course Algorithm and Desgin on Coursera, Week 1
+ * It calculate the inversions of the Array A[]
+ * the Inversion is for every index i, j, if i < j, and A[i] > A[j]
+ * Ok.
  */
 public class Inversion {
 
+	/*
+	 * @param invercnt counts the total number of the inversions
+	 */
 	static long invercnt = 0;
 	/**
 	 * @param args
@@ -18,7 +24,7 @@ public class Inversion {
 	 */
 	public static void main(String[] args) throws IOException {
 /*
- *  Read in Numbers from the file IntegerArray.txt
+ *  Read in Numbers of the Array from the file IntegerArray.txt
  */
 		ArrayList<Integer> nums = new ArrayList<Integer>();
 		int[] numbers = new int[100000];
@@ -62,13 +68,11 @@ public class Inversion {
 		
 		System.out.println("Inversion Count is: " + invercnt );
 		
-//		for (int index = 0; index < numbers.length; index++){
-//			System.out.println(numbers[index]);
-//		}
-/*
- * Using Divide and Conquer methods to calculate the inversions 
- */
 	}
+	
+	/*
+	 * Reccusively Divide the Array into small pieces 
+	 */
 	
 	public static int[] DivideSort (int[] nums, int start, int end){
 		int seperate = (start + end) / 2;
@@ -81,17 +85,18 @@ public class Inversion {
 		}
 		return nums;
 	}
-	
+
+	/*
+	 * The Merge Step
+	 */
 	private static void MergeArray(int[] array, int start, int seperate, int end){
-//		int[] temp = new int[end - start + 1];
+		int[] temp = new int[end - start + 1];
  		int i  = start;
 		int j  = seperate  + 1;
-//		int k = 0;
-		
+
 		for ( i = start; i <= seperate; i++){
 			for (j = seperate + 1; j <= end; j++){
 				if (array[i] > array[j]){
-//					System.out.println(array[i] + "," + array[j]);
 					invercnt++;
 				}
 			}
