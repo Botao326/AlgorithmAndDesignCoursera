@@ -96,26 +96,6 @@ public class Inversion {
 				}
 			}
 		}
-/*			
-		while(i <= seperate && j <= end) {
-			if (array[i] < array[j]){
-				temp[k++] = array[i++];
-			}else {
-					invercnt++;
-					temp[k++] = array[j++];
-			}
-		}
-		
-		while(i <= seperate){
-			temp[k++] = array[i++];
-		}
-		
-		while(j <= end){
-			temp[k++] = array[j++];
-		}
-		
-		for (int index = 0; index < temp.length; index++){
-			array[index + start] = temp[index];
-		}*/
+
 	}
 }
