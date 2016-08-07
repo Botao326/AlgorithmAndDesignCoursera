@@ -65,7 +65,7 @@ public class QuickSort {
 		
 		arrays = swap (arrays, pivot, j - 1);
 		
-		Quicksort(arrays, 0, j);
+		Quicksort(arrays, pivot, j);
 		Quicksort(arrays, j, i);
 		
 		return arrays;
