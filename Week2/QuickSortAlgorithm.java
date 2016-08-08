@@ -1,43 +1,49 @@
 import java.util.*;
 
 public class QuickSortAlgorithm {
+	static public int a[] = {3, 8, 2, 5, 1, 4, 7, 6};
 	
-	public static int[] Quicksort(int[] arrays, int pivot, int r){
+	public static void Quicksort(int start, int end){
 		
-		if ((r - pivot) <= 1){
-			return arrays;
-		}
-		
-		int Key = arrays[pivot];
-		int j = pivot+1;
-		int i;
-		
-		for (i = pivot+1; i < r; i++){
-			if (arrays[i] < Key){
-				arrays = swap(arrays, i, j);
-				j++;
+		if (end - start == 1){
+			if (a[start] > a[end]){
+				swap (start, end);
 			}
 		}
+		else if (end <= start){
+			
+		}
+		else{
+			
+			int PivotIndex = start;
+			int Pivot = a[PivotIndex];
+			int i = start;
 		
-		arrays = swap (arrays, pivot, j - 1);
-	
-		Quicksort(arrays, pivot, j);
-		Quicksort(arrays, j, i);
-		
-		return arrays;
+			for (int j = start; j <= end; j++){
+				if (a[j] < Pivot){
+					i++;
+					swap(i, j);
+				}
+			}
+			
+			swap (PivotIndex, i);
+			Quicksort(start, i - 1);
+			Quicksort(i + 1, end);
+		}
 	}
 	
-	public static int[] swap(int[] arrays, int a, int b){
-		int tmp = arrays[a];
-		arrays[a] = arrays[b];
-		arrays[b] = tmp;
-		return arrays;
+	
+	public static void swap(int start, int end){
+		int tmp = a[start];
+		a[start] = a[end];
+		a[end] = tmp;
 	}
 	
 	public static void main(String[] args){
-		int a[] = {3, 8, 2, 5, 1, 4, 7, 6, 12, 65, 34, 23, 35};
 		
-		Quicksort(a, 0, a.length);
+		
+		System.out.println(a.length);
+		Quicksort(0, a.length - 1);
 		
 		for (int i = 0; i < a.length; i++){
 			System.out.print(a[i] + " ");

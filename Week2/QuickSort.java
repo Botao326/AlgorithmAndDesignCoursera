@@ -2,12 +2,13 @@ import java.io.*;
 import java.util.*;
 
 public class QuickSort {
+	static int[] a = new int[10000];
+	public static int CompareCnt = 0;
 
 	public static void main(String[] args) throws IOException {
 		// Read in data from the File
 		ArrayList<Integer> nums = new ArrayList<Integer>();
-		int[] numbers = new int[10000];
-		List list = new ArrayList();
+				List list = new ArrayList();
 		Integer cnt = 0;
 /*
  * Open File IntegerArray.txt
@@ -35,48 +36,53 @@ public class QuickSort {
 		}
 		
 		for(int i = 0; i < nums.size(); i++){
-			numbers[i] = nums.get(i);
+			a[i] = nums.get(i);
 		}
 		System.out.println("cnt = " + cnt + " " + "Nums: " + nums.size());
 		
-		Quicksort(numbers, 0, numbers.length);
+		Quicksort(0, a.length - 1);
 		for (int i = 0; i < 10000; i++){
-			System.out.println(numbers[i]);
+			System.out.println(a[i]);
 		}
+		System.out.println(CompareCnt);
 	}
 	
-	
-	public static int[] Quicksort(int[] arrays, int pivot, int r){
+	public static void Quicksort(int start, int end){
 		
-		if ((r - pivot) <= 1){
-			return arrays;
+		if (end - start == 1){
+			if (a[start] > a[end]){
+				swap (start, end);
+			}CompareCnt++;
 		}
+
+		else if (end <= start){
+			
+		}
+		else{
+			CompareCnt += end - start;
+			
+			int PivotIndex = start;
+			int Pivot = a[PivotIndex];
+			int i = start;
 		
-		int Key = arrays[pivot];
-		int j = pivot+1;
-		int i;
-		
-		for (i = pivot+1; i < r; i++){
-			if (arrays[i] < Key){
-				arrays = swap(arrays, i, j);
-				j++;
+			for (int j = start; j <= end; j++){
+				if (a[j] < Pivot){
+				
+					i++;
+					swap(i, j);
+				}
 			}
+			swap (PivotIndex, i);
+			Quicksort(start, i - 1);
+			Quicksort(i + 1, end);
 		}
-		
-		arrays = swap (arrays, pivot, j - 1);
-		
-		Quicksort(arrays, pivot, j);
-		Quicksort(arrays, j, i);
-		
-		return arrays;
 	}
 	
-	public static int[] swap(int[] arrays, int a, int b){
-		int tmp = arrays[a];
-		arrays[a] = arrays[b];
-		arrays[b] = tmp;
-		return arrays;
-	}
 	
+	public static void swap(int start, int end){
+		int tmp = a[start];
+		a[start] = a[end];
+		a[end] = tmp;
+	}
 
 }
